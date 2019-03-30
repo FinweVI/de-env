@@ -128,7 +128,7 @@ bindsym $mod+Shift+agrave move container to workspace 10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # lock screen
-bindsym $mod+Control+l exec "$home/bin/i3lock-fancy-multimonitor/lock -p"
+bindsym $mod+Control+l exec "$home/.config/i3/i3lock-fancy-multimonitor/lock -p"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
