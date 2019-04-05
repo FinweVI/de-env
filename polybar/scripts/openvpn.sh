@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-if [ "$(pgrep openvpn)" ]; then
+if [ "$(pgrep -x openvpn)" ]; then
     echo "  VPN On "
 else
     echo "  No VPN "
