@@ -63,7 +63,7 @@ font-3 = Font Awesome 5 Free Solid:style=Solid:pixelsize=10;1
 
 modules-left = i3
 modules-center = date
-modules-right = alsa isrunning-openvpn memory cpu wlan eth battery0 battery1 temperature
+modules-right = pulseaudio isrunning-openvpn memory cpu wlan battery0 temperature
 
 tray-position = right
 tray-padding = 2
@@ -391,8 +391,9 @@ battery = BAT1
 
 [module/temperature]
 type = internal/temperature
-thermal-zone = 0
-warn-temperature = 55
+#thermal-zone = 0
+warn-temperature = 70
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon2/temp1_input
 
 format = " <ramp> <label> "
 format-underline = #427b58
