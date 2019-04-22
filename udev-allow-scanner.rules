@@ -1,0 +1,10 @@
+#
+#   udev rules sample for Brother MFP
+#         version 1.0.0-1
+#
+#   Copyright (C) 2012 Brother. Industries, Ltd.
+#
+#   copy to /etc/udev/rules.d or /lib/udev/rules.d
+#
+
+SUBSYSTEMS=="usb", ATTRS{idProduct}=="0219", ATTRS{idVendor}=="04f9", GROUP="scanner", MODE="0666", SYMLINK+="scanner-%k"
