@@ -257,7 +257,7 @@ format-disconnected =
 
 [module/eth]
 type = internal/network
-interface = enx00e04c680a75
+interface = enusb0
 interval = 3.0
 
 format-connected-underline = #79740e

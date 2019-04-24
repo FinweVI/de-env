@@ -1,0 +1,1 @@
+SUBSYSTEM=="net", ACTION=="add", ATTR{address}=="00:e0:4c:68:0a:75", NAME="enusb0"
