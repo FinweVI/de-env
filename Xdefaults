@@ -8,9 +8,9 @@
 ! -----------------------------------------------------------------------------
 
 ! hard contrast: *background: #f9f5d7
-*background: #fbf1c7
+*background: #fcf4dc
 ! soft contrast: *background: #f2e5bc
-*foreground: #3c3836
+*foreground: #52676f
 ! Black + DarkGrey
 *color0:  #fdf4c1
 *color8:  #928374
@@ -39,5 +39,5 @@
 
 URxvt.perl-ext-common: font-size
 URxvt.scrollBar: false
-URxvt.font: xft:Iosevka Term:size=10
+URxvt.font: xft:Iosevka:size=10
 URxvt.saveLines: 1000000
