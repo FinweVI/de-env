@@ -393,7 +393,7 @@ battery = BAT1
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 55
+warn-temperature = 75
 
 format = " <ramp> <label> "
 format-underline = #427b58
