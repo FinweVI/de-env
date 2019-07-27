@@ -36,7 +36,7 @@ font pango:Iosevka Term 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec urxvt
+bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -128,7 +128,7 @@ bindsym $mod+Shift+agrave move container to workspace 10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # lock screen
-bindsym $mod+Control+l exec "$home/.config/i3/i3lock-fancy-multimonitor/lock -p"
+bindsym $mod+Control+l exec "$home/.config/i3/i3lock-fancy-multimonitor/lock -p && xset dpms force off"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -172,7 +172,7 @@ bindsym $mod+r mode "resize"
 
 # Scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
-bindsym $mod+twosuperior [class="URxvt"] scratchpad show
+bindsym $mod+twosuperior [class="Alacritty"] scratchpad show
 bindsym $mod+equal [class="keepassx"] scratchpad show
 
 #FN Keys
@@ -186,19 +186,18 @@ bindsym XF86AudioLowerVolume exec amixer -q sset Master 3%-
 # mute/unmute
 bindsym XF86AudioMute exec amixer -q sset Master toggle
 
-bindsym $mod+F11 exec "$home/.config/i3/kb_bl.sh"
-
 for_window [class="Firefox"] border pixel 1
 for_window [class="Chromium"] border pixel 1
+for_window [class="Chrome"] border pixel 1
 for_window [class="Code"] border pixel 1
 
-exec xrandr --output eDP1 --auto --output DP1 --off --above eDP1
+#exec xrandr --output LVDS1 --off
 exec --no-startup-id "redshift"
 exec --no-startup-id "xset b off"
 exec --no-startup-id "setxkbmap fr"
 exec --no-startup-id "$home/.fehbg"
+exec --no-startup-id "xautolock -time 5 -locker '/home/finwe/.config/i3/i3lock-fancy-multimonitor/lock -p && xset dpms force off'"
 #exec --no-startup-id "compton -f"
-exec --no-startup-id "cd $home/Documents/vpn && sudo openvpn vpn-udp-3010-jva.ovpn"
 exec chromium
 
 exec_always --no-startup-id $home/.config/polybar/launch.sh
