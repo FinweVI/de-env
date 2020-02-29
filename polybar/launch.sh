@@ -6,14 +6,15 @@ killall -q polybar
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
-if [ -f /home/julienvallee/.mainscreen ]; then
-    MONITOR=$(cat /home/julienvallee/.mainscreen)
-    if xrandr -q | egrep "^$MONITOR connected .*$"; then
-        export MONITOR=$MONITOR
-    else
-        export MONITOR="eDP-1"
-    fi
-fi
+#MONITOR=$(cat /home/julienvallee/.mainscreen)
+MONITOR="eDP-1"
+for enabled_screen in $(mons | awk -F ' ' '/enabled/{ print $2 }')
+do
+  if [[ $enabled_screen =~ "DP-" ]]; then
+    MONITOR="$enabled_screen"
+  fi
+done
+export MONITOR
 
 logger -t "monitor-hotplug" "restarting polybar on screen $MONITOR"
 # Launch bar1

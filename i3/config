@@ -9,7 +9,7 @@
 # VARIABLES #
 #############
 
-set $home /home/finwe
+set $home /home/julienvallee
 
 # i3 config file (v4)
 #
@@ -36,13 +36,13 @@ font pango:Iosevka Term 10
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec urxvt
 
 # kill focused window
 bindsym $mod+Shift+Q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show run
+bindsym $mod+d exec rofi -show run 
 # start rofi for opened windows
 bindsym $mod+Tab exec rofi -show window
 
@@ -113,6 +113,17 @@ bindsym $mod+underscore workspace 8
 bindsym $mod+ccedilla workspace 9
 bindsym $mod+agrave workspace 10
 
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace 1
 bindsym $mod+Shift+eacute move container to workspace 2
@@ -128,11 +139,20 @@ bindsym $mod+Shift+agrave move container to workspace 10
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # lock screen
-bindsym $mod+Control+l exec "$home/.config/i3/i3lock-fancy-multimonitor/lock -p && xset dpms force off"
+bindsym $mod+Control+l exec "$home/.config/i3/i3lock-fancy-multimonitor/lock -p"
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# Manage screens with mons
+# laptop mode, internal screen only
+bindsym Control+Shift+l exec "$home/.config/i3/screenswitch.sh laptop" 
+# desktop mode, laptop on the left, desktop screen on the right
+bindsym Control+Shift+e exec "$home/.config/i3/screenswitch.sh desktop"
+# desktop mode, desktop screen only
+bindsym Control+Shift+d exec "$home/.config/i3/screenswitch.sh desktop-only" 
+
 
 # Colors
 # class                 border  backgr. text    indicator child_border
@@ -172,8 +192,9 @@ bindsym $mod+r mode "resize"
 
 # Scratchpad
 bindsym $mod+Shift+BackSpace move scratchpad
-bindsym $mod+twosuperior [class="Alacritty"] scratchpad show
-bindsym $mod+equal [class="keepassx"] scratchpad show
+bindsym $mod+twosuperior [class="URxvt"] scratchpad show
+bindsym $mod+grave [class="URxvt"] scratchpad show
+bindsym $mod+equal [class="Slack"] scratchpad show
 
 #FN Keys
 bindsym XF86MonBrightnessUp exec xbacklight +10
@@ -186,18 +207,23 @@ bindsym XF86AudioLowerVolume exec amixer -q sset Master 3%-
 # mute/unmute
 bindsym XF86AudioMute exec amixer -q sset Master toggle
 
+bindsym $mod+F11 exec "$home/.config/i3/kb_bl.sh"
+
 for_window [class="Firefox"] border pixel 1
 for_window [class="Chromium"] border pixel 1
-for_window [class="Chrome"] border pixel 1
 for_window [class="Code"] border pixel 1
+for_window [class="Slack"] border pixel 1
+for_window [class="jetbrains-pycharm-ce"] border pixel 1
+for_window [class="jetbrains-pycharm"] border pixel 1
 
-#exec xrandr --output LVDS1 --off
+exec xrandr --output eDP1 --auto --output DP1 --off --above eDP1
 exec --no-startup-id "redshift"
 exec --no-startup-id "xset b off"
 exec --no-startup-id "setxkbmap fr"
 exec --no-startup-id "$home/.fehbg"
-exec --no-startup-id "xautolock -time 5 -locker '/home/finwe/.config/i3/i3lock-fancy-multimonitor/lock -p && xset dpms force off'"
 #exec --no-startup-id "compton -f"
+exec --no-startup-id "xautolock -time 5 -locker '$home/.config/i3/i3lock-fancy-multimonitor/lock -p'"
+#exec --no-startup-id "xautolock -time 120 -locker systemctl suspend"
 exec chromium
 
 exec_always --no-startup-id $home/.config/polybar/launch.sh
