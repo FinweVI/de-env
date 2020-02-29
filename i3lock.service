@@ -1,0 +1,12 @@
+[Unit]
+Description=Lock screen before suspend
+Before=sleep.target
+
+[Service]
+User=finwe
+Type=forking
+Environment=DISPLAY=:0
+ExecStart=/home/finwe/.config/i3/i3lock-fancy-multimonitor/lock -p
+
+[Install]
+WantedBy=sleep.target
