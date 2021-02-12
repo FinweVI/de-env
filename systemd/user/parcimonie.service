@@ -1,0 +1,11 @@
+[Unit]
+Description=Parcimonie for GPG Key refresh
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/parcimonie
+Restart=Always
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
